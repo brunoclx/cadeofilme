@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="dark">
+<html lang="pt-br" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,11 +28,12 @@
     <footer class="text-white p-5 gap-5 mt-4 flex flex-col bg-darkcade dark:bg-verydarkcade sm:flex-row justify-center sm:justify-between">
         <p>Cadê o Filme? - Desenvolvido por Bruno Calixto</p>
         <ul>
-            <li><a href="">Tema escuro: desativado</a></li>
+            <li><a id="mudar-tema">Tema escuro: <span id="status-tema"></span></a></li>
             <li><a href="">Documentação</a></li>
             <li><a href="">Github</a></li>            
         </ul>
     </footer>
+    <script src="assets/js/tema-escuro.js"></script>
     <script src="assets/js/carregar-em-alta.js"></script>
 </body>
 </html>
