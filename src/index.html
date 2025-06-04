@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="">
+<html lang="pt-br" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="assets/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/output.css">
     <title>Cadê o Filme?</title>
 </head>
 <body class="bg-white dark:bg-darkcade">
-    <main class="container px-5 h-screen flex flex-col justify-start pt-[30px] gap-7">
+    <main class="container px-5 min-h-screen flex flex-col justify-start pt-[30px] gap-7">
         <div class="content-busca flex flex-col items-center gap-5">
             <div class="logo">
                 <img src="assets/imagens/logo-white.png" class="hidden dark:block h-[100px]" alt="Logo Cadê o Filme na cor branca">
@@ -21,15 +21,11 @@
             </div>
         </div>
         <div class="em-alta">
-            <h2 class="mb-[10px]">Filmes e séries em alta:</h2>
-            <ul class="flex flex-col divide-y-1 divide-darkcade">
-                <li class="py-3"><i class="fa-solid fa-chart-line text-darkcade"></i> <span class="px-2">Titanic</span></li>
-                <li class="py-3"><i class="fa-solid fa-chart-line text-darkcade"></i> <span class="px-2">The Big Bang Theory</span></li>
-                <li class="py-3"><i class="fa-solid fa-chart-line text-darkcade"></i> <span class="px-2">Friends</span></li>
-            </ul>
+            <h2 class="mb-[10px] dark:text-white">Filmes e séries em alta hoje:</h2>
+            <ul class="flex flex-col divide-y-1 divide-darkcade dark:divide-white dark:text-white" id="lista-em-alta"></ul>
         </div>
     </main>
-    <footer class="bg-darkcade dark:bg-verydarkcade text-white p-8 gap-5 flex flex-col sm:flex-row justify-center sm:justify-between">
+    <footer class="text-white p-5 gap-5 mt-4 flex flex-col bg-darkcade dark:bg-verydarkcade sm:flex-row justify-center sm:justify-between">
         <p>Cadê o Filme? - Desenvolvido por Bruno Calixto</p>
         <ul>
             <li><a href="">Tema escuro: desativado</a></li>
@@ -37,5 +33,6 @@
             <li><a href="">Github</a></li>            
         </ul>
     </footer>
+    <script src="assets/js/carregar-em-alta.js"></script>
 </body>
 </html>
