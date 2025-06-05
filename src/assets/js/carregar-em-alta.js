@@ -23,7 +23,7 @@ async function carregarEmAlta() { // Crio a função assincrona carregarEmAlta
             if(contador <= 8){ // se o contador for menor ou igual a 8
                 let novoItem = document.createElement("li"); // cria um novo elemento
                 novoItem.className = "py-3"; // acrescenta a class
-                novoItem.innerHTML = `<a href="/filme/id=${item.id}"><i class="fa-solid fa-chart-line text-darkcade dark:text-white"></i> <span class="px-2">${item.title || item.name}</span></a>`; // dentro do li criado adiciono mais informações como link e o titulo ou name
+                novoItem.innerHTML = `<a href="/src/filme.html?id=${item.id}"><i class="fa-solid fa-chart-line text-darkcade dark:text-white"></i> <span class="px-2">${item.title || item.name}</span></a>`; // dentro do li criado adiciono mais informações como link e o titulo ou name
                 listaEmAlta.appendChild(novoItem); // adiciono o novo li criado dentro da lista "listaEmAlta"
             }
         });

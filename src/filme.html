@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/output.css">
+    <title>Cadê o Filme?</title>
+</head>
+<body class="bg-white dark:bg-darkcade">
+    <header class="container px-5 text-white">
+        <div class="conteudo-header flex justify-between items-center py-[15px] border-b border-white">
+            <i class="fa-solid fa-bars"></i>
+            <div class="logo">
+                <img src="assets/imagens/logo-white.png" class="hidden dark:block h-[40px]" alt="Logo Cadê o Filme na cor branca">
+                <img src="assets/imagens/logo-dark.png" class="block dark:hidden h-[40px]" alt="Logo Cadê o Filme na cor preta">
+            </div>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </header>
+    <main class="container px-5 min-h-screen flex">        
+        <section class="w-full flex flex-col justify-start gap-5">
+            <div class="backdrop flex w-full h-48 mt-[15px] bg-[url(https://media.themoviedb.org/t/p/w1000_and_h563_face/sCzcYW9h55WcesOqA12cgEr9Exw.jpg)] bg-cover rounded-md"></div>
+            <div class="detalhes flex flex-col justify-start gap-4">
+                <div class="dados-conteudo text-white text-xs">
+                    <ul class="flex justify-between">
+                        <li><a href="">Filme</a></li>
+                        <li>12</li>
+                        <li>1987</li>
+                        <li>3h 14m</li>
+                        <li>IMDb: 8.4/10</li>
+                    </ul>
+                </div>
+                <h1 class="text-2xl text-white font-bold">Titanic</h1>                
+                <div class="onde-assistir">
+                    <h2 class="text-lg font-bold text-white">Onde assistir?</h2>
+                    <ul class="flex gap-3 mt-[5px]">
+                        <li><img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-10 rounded-md"></li>
+                        <li><img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-10 rounded-md"></li>
+                    </ul>
+                </div>
+                <p class="text-white"><span class="font-bold">Sinopse:</span> Um artista pobre e uma jovem rica se conhecem e se apaixonam na fatídica jornada do Titanic, em 1912. Embora esteja noiva do arrogante herdeiro de uma siderúrgica, a jovem desafia sua família e amigos em busca do verdadeiro amor.</p>
+                <div class="generos text-white">Gêneros: <a href=""> <a href="">Drama</a>, <a href="">Romance</a></a></div>
+                <div class="elenco text-white">Elenco: <a href="">Leonardo DiCaprio</a>, <a href="">Kate Winslet</a></div>
+                <div class="direcao text-white">Direção: <a href="">James Cameron</a></div>  
+            </div>
+            <div class="mais-opcoes">
+                <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
+                <ul class="lista-mais-opcoes grid grid-cols-3 gap-5 mt-[5px]">
+                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
+                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
+                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
+                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
+                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
+                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
+
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer class="text-white p-5 gap-5 mt-4 flex flex-col bg-darkcade dark:bg-verydarkcade sm:flex-row justify-center sm:justify-between">
+        <p>Cadê o Filme? - Desenvolvido por Bruno Calixto</p>
+        <ul>
+            <li><a id="mudar-tema">Tema escuro: <span id="status-tema"></span></a></li>
+            <li><a href="">Documentação</a></li>
+            <li><a href="">Github</a></li>            
+        </ul>
+    </footer>
+    <script src="assets/js/tema-escuro.js"></script>
+</body>
+</html>
