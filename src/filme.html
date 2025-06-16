@@ -10,7 +10,7 @@
 <body class="bg-white dark:bg-darkcade">
     <header class="container px-5 text-white">
         <div class="conteudo-header flex justify-between items-center py-[15px] border-b border-white">
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-arrow-left"></i>
             <div class="logo">
                 <img src="assets/imagens/logo-white.png" class="hidden dark:block h-[40px]" alt="Logo Cadê o Filme na cor branca">
                 <img src="assets/imagens/logo-dark.png" class="block dark:hidden h-[40px]" alt="Logo Cadê o Filme na cor preta">
@@ -18,31 +18,108 @@
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
     </header>
-    <main class="container px-5 min-h-screen flex">        
-        <section class="w-full flex flex-col justify-start gap-5">
-            <div class="backdrop flex w-full h-48 mt-[15px] bg-[url(https://media.themoviedb.org/t/p/w1000_and_h563_face/sCzcYW9h55WcesOqA12cgEr9Exw.jpg)] bg-cover rounded-md"></div>
+    <main class="min-h-screen flex flex-col gap-5">        
+        <section class="container px-5 w-full flex flex-col justify-start gap-5">
+            <div class="backdrop flex w-full h-48 mt-[15px] bg-cover rounded-md"></div>
             <div class="detalhes flex flex-col justify-start gap-4">
+                <h1 class="text-2xl text-white font-bold" id="titulo-filme"></h1> 
                 <div class="dados-conteudo text-white text-xs">
                     <ul class="flex justify-between">
                         <li><a href="">Filme</a></li>
-                        <li>12</li>
-                        <li>1987</li>
-                        <li>3h 14m</li>
-                        <li>IMDb: 8.4/10</li>
+                        <li id="classificacao"></li>
+                        <li id="ano">1987</li>
+                        <li id="duracao"></li>
+                        <li id="generos"></li>
                     </ul>
-                </div>
-                <h1 class="text-2xl text-white font-bold">Titanic</h1>                
-                <div class="onde-assistir">
-                    <h2 class="text-lg font-bold text-white">Onde assistir?</h2>
-                    <ul class="flex gap-3 mt-[5px]">
-                        <li><img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-10 rounded-md"></li>
-                        <li><img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-10 rounded-md"></li>
+                </div>  
+                <div class="acesso-rapido text-xs mt-2">
+                    <ul class="flex justify-between">
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Notas</a></li>
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
                     </ul>
+                </div>              
+                <p class="text-white"><span class="font-bold">Sinopse:</span> <span id="sinopse"></span></p>                
+            </div>            
+        </section>
+        <section id="onde-assistir" class="p-5 bg-verydarkcade">
+            <div class="text-white flex justify-between items-center">
+                <h2 class="text-lg font-bold">Onde assistir?</h2>
+                <p class="text-xs">powered by <a href="http://www.justwatch.com" target="_blank" rel="noopener noreferrer">Justwatch</a></p>
+            </div>
+             <div class="flex flex-col gap-3">
+                <div class="text-white flex flex-col gap-3">
+                    <p>Por assinatura:</p>
+                    <div class="servicos grid grid-cols-3 gap-5 pb-3 border-b border-darkcade">
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-8 rounded-full">
+                            <h4>Disney+</h4>
+                        </div>
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
+                            <h4>Netflix</h4>
+                        </div>
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
+                            <h4>Netflix c/ Anuncios</h4>
+                        </div>
+                    </div>
+                    <p>Alugar:</p>
+                    <div class="servicos grid grid-cols-3 gap-5 pb-3 border-b border-darkcade">
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-8 rounded-full">
+                            <h4>Disney+</h4>
+                        </div>
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
+                            <h4>Netflix</h4>
+                        </div>
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
+                            <h4>Netflix c/ Anuncios</h4>
+                        </div>
+                    </div> 
+                    <p>Comprar:</p>
+                    <div class="servicos grid grid-cols-3 gap-5">
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-8 rounded-full">
+                            <h4>Disney+</h4>
+                        </div>
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
+                            <h4>Netflix</h4>
+                        </div>
+                        <div class="servico flex gap-3 items-center text-xs">
+                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
+                            <h4>Netflix c/ Anuncios</h4>
+                        </div>
+                    </div>                    
                 </div>
-                <p class="text-white"><span class="font-bold">Sinopse:</span> Um artista pobre e uma jovem rica se conhecem e se apaixonam na fatídica jornada do Titanic, em 1912. Embora esteja noiva do arrogante herdeiro de uma siderúrgica, a jovem desafia sua família e amigos em busca do verdadeiro amor.</p>
-                <div class="generos text-white">Gêneros: <a href=""> <a href="">Drama</a>, <a href="">Romance</a></a></div>
-                <div class="elenco text-white">Elenco: <a href="">Leonardo DiCaprio</a>, <a href="">Kate Winslet</a></div>
-                <div class="direcao text-white">Direção: <a href="">James Cameron</a></div>  
+            </div>
+        </section>
+        <section class="container px-5 w-full flex flex-col text-white gap-5">
+            <div id="notas" class="pb-5 border-b border-verydarkcade">
+                <h2 class="text-lg font-bold">Notas</h2>
+                <div class="avaliadores grid grid-cols-3 gap-5">
+                    <div class="avaliador text-center">
+                        <p class="font-semibold">8,1/10</p>
+                        <p class="text-xs">Imdb</p>
+                    </div>
+                    <div class="avaliador text-center">
+                        <p class="font-semibold">6.4/10</p>
+                        <p class="text-xs">Rotten Tomatoes</p>
+                    </div>
+                    <div class="avaliador text-center">
+                        <p class="font-semibold">7/10</p>
+                        <p class="text-xs">Tmdb</p>
+                    </div>
+                </div>
+            </div>
+            <div id="creditos" class="pb-5 border-b border-verydarkcade">
+                <h2 class="text-lg font-bold">Créditos</h2>
+                <p id="elenco" class="text-white">Elenco:</p>
+                <p id="elenco" class="text-white">Diretor:</p>
             </div>
             <div class="mais-opcoes">
                 <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
@@ -67,5 +144,80 @@
         </ul>
     </footer>
     <script src="assets/js/tema-escuro.js"></script>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const termoPesquisar = urlParams.get('id');
+
+        async function detalhesFilme(termoPesquisado) {
+            let backdrop = document.getElementsByClassName("backdrop");
+            let tituloFilme = document.getElementById("titulo-filme");
+            let duracao = document.getElementById("duracao");
+            let anoLancamento = document.getElementById("ano");
+            let classificacaoFilme = document.getElementById("classificacao");
+            let sinopse = document.getElementById("sinopse");
+            let generos = document.getElementById("generos");
+            let elenco = document.getElementById("elenco");
+            
+
+            try {
+                const options = { // crio uma const para passar as informações (opções)
+                    method: 'GET', // método usado GET
+                    headers: {
+                        accept: 'application/json', // forma que vou passar a informação
+                        // token TMDB:
+                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMzFlYmFlZTUzYjg4ZTg5OTZjMjYxYTQzMWI3ZmVmOSIsIm5iZiI6MTUyNTcxMDE1OC41NjcwMDAyLCJzdWIiOiI1YWYwN2Q0ZTBlMGEyNjFkODMwMTIwNGUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.9bR2GldZkN9Bvk1hZ8b1p2d-5asNZoUortYKtg5x2Gk'
+                    }
+                };
+                termoPesquisado = termoPesquisar;
+                const RESPOSTA = await Promise.all([
+                    fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}?language=pt-BR`, options),
+                    fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}/release_dates`, options),
+                    fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}/watch/providers`, options),
+                    fetch(`https://api.themoviedb.org/3/movie//${termoPesquisado}/credits`, options)
+                ]);
+                let dados = await RESPOSTA[0].json();
+                let classificacao = await RESPOSTA[1].json();
+                let watchProviders = await RESPOSTA[2].json();
+                let elencoCreditos = await RESPOSTA[3].json();
+
+                backdrop[0].style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${dados.backdrop_path})`;
+                tituloFilme.innerHTML = dados.title || dados.name;
+                sinopse.innerHTML = `${dados.overview}.`;
+
+                let contaGenero = 0;
+                let todosGeneros = dados.genres;
+                todosGeneros.forEach(genero => {
+                    let novoGenero = document.createElement("span");
+                    contaGenero ++;
+
+                    if(contaGenero < todosGeneros.length){
+                        novoGenero.innerHTML = `<a href="">${genero.name}</a>/`;
+                    }else if(contaGenero = todosGeneros.length){
+                        novoGenero.innerHTML = `<a href="">${genero.name}</a>`;
+                    }
+                    generos.appendChild(novoGenero);
+                });
+
+                duracao.innerHTML = `${dados.runtime} min`;
+
+                let classificacaoFilmeRetorno = classificacao.results.find(item => item.iso_3166_1 === "BR");
+                let classificacaoBR = classificacaoFilmeRetorno ? classificacaoFilmeRetorno.release_dates[0].certification : "";
+                classificacaoFilme.innerHTML = classificacaoBR;
+                
+                anoLancamento.innerHTML = `${dados.release_date.split("-")[0]}`;
+
+                //console.log(watchProviders);
+                let watchProvidersRetorno = watchProviders.results.BR;
+
+                console.log(watchProvidersRetorno);
+                
+
+            } catch (error) {
+               console.log("Erro:", error); 
+            }
+        }
+        detalhesFilme();
+    </script>
 </body>
 </html>
