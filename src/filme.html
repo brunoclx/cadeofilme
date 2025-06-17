@@ -51,7 +51,7 @@
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
                     </ul>
                 </div>              
-                <p id="txt-sinopse" class="text-white line-clamp-4"><span class="font-bold">Sinopse:</span> <span id="sinopse"></span></p>
+                <p id="txt-sinopse" class="text-white line-clamp-4"><strong>Sinopse:</strong> <span id="sinopse"></span></p>
                 <button onclick="lerMais()" id="ler-mais-menos" class="text-white"><i class="fa-solid fa-arrow-down"></i> <span>Ler mais</span></button>                
             </div>            
         </section>
@@ -130,8 +130,10 @@
             </div>
             <div id="creditos" class="pb-5 border-b border-verydarkcade">
                 <h2 class="text-lg font-bold">Créditos</h2>
-                <p id="elenco" class="text-white">Elenco:</p>
-                <p id="elenco" class="text-white">Diretor:</p>
+                <div class="flex flex-col gap-2">
+                    <p id="elenco" class="text-white"><strong>Elenco:</strong></p>
+                    <p class="text-white"><strong>Diretor:</strong> <span id="diretor"></span></p>
+                </div>                
             </div>
             <div class="mais-opcoes">
                 <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
@@ -170,6 +172,7 @@
             let sinopse = document.getElementById("sinopse");
             let generos = document.getElementById("generos");
             let elenco = document.getElementById("elenco");
+            let diretor = document.getElementById("diretor");
             
 
             try {
@@ -194,8 +197,7 @@
                 let elencoCreditos = await RESPOSTA[3].json();
 
                 backdrop[0].style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${dados.backdrop_path})`;
-                tituloFilme.innerHTML = dados.title || dados.name;
-                sinopse.innerHTML = `${dados.overview}`;
+                tituloFilme.innerHTML = dados.title || dados.name;                
 
                 let contaGenero = 0;
                 let todosGeneros = dados.genres;
@@ -219,10 +221,33 @@
                 
                 anoLancamento.innerHTML = `${dados.release_date.split("-")[0]}`;
 
+                sinopse.innerHTML = `${dados.overview}`;
+
                 //console.log(watchProviders);
                 let watchProvidersRetorno = watchProviders.results.BR;
 
-                console.log(watchProvidersRetorno);
+                console.log(elencoCreditos);
+
+                const elencoCast = elencoCreditos.cast.filter(  // crio uma variavel que filtra o resultado, acessando o obejto results e filtro
+                    item => item.known_for_department === "Acting"
+                );
+
+                let contaelenco = 0;
+                elencoCast.forEach(cast => {
+                    let novoCast = document.createElement("span");
+                    contaelenco ++;
+
+                    if(contaelenco < 10){
+                        novoCast.innerHTML = ` <a href="">${cast.name}</a>,`;
+                    }else if(contaelenco == 10){
+                        novoCast.innerHTML = ` <a href="">${cast.name}.</a>`;
+                    }
+                    elenco.appendChild(novoCast);
+                });
+                console.log(elencoCast);
+
+                let elencoDiretor = elencoCreditos.crew.find(item => item.job === "Director");
+                diretor.innerHTML = `${elencoDiretor.name}.`;
                 
 
             } catch (error) {
