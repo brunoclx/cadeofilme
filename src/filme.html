@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/output.css">
     <title>Cadê o Filme?</title>
+    <style>
+        /* Oculta a scrollbar apenas visualmente */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE e Edge */
+            scrollbar-width: none;     /* Firefox */
+        }
+    </style>
 </head>
 <body class="bg-white dark:bg-darkcade">
     <header class="container px-5 text-white">
@@ -32,15 +42,17 @@
                         <li id="generos"></li>
                     </ul>
                 </div>  
-                <div class="acesso-rapido text-xs mt-2">
-                    <ul class="flex justify-between">
+                <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar">
+                    <ul class="flex w-max gap-2 py-2 whitespace-nowrap">
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Notas</a></li>
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
                     </ul>
                 </div>              
-                <p class="text-white"><span class="font-bold">Sinopse:</span> <span id="sinopse"></span></p>                
+                <p id="txt-sinopse" class="text-white line-clamp-4"><span class="font-bold">Sinopse:</span> <span id="sinopse"></span></p>
+                <button onclick="lerMais()" id="ler-mais-menos" class="text-white"><i class="fa-solid fa-arrow-down"></i> <span>Ler mais</span></button>                
             </div>            
         </section>
         <section id="onde-assistir" class="p-5 bg-verydarkcade">
@@ -183,7 +195,7 @@
 
                 backdrop[0].style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${dados.backdrop_path})`;
                 tituloFilme.innerHTML = dados.title || dados.name;
-                sinopse.innerHTML = `${dados.overview}.`;
+                sinopse.innerHTML = `${dados.overview}`;
 
                 let contaGenero = 0;
                 let todosGeneros = dados.genres;
@@ -218,6 +230,27 @@
             }
         }
         detalhesFilme();
+    </script>
+    <script>
+       let sinopseMini = true;
+       
+       function lerMais(){
+            const lerMais = document.querySelector("#ler-mais-menos i");
+            const lerMaisTexto = document.querySelector("#ler-mais-menos span");
+            const txtSinopse = document.querySelector("#txt-sinopse");
+            
+            if(sinopseMini){
+                txtSinopse.classList.remove("line-clamp-4");
+                lerMais.classList.replace("fa-arrow-down", "fa-arrow-up");
+                lerMaisTexto.innerHTML = "Ler menos";
+                sinopseMini = false;
+            }else{
+                txtSinopse.classList.add("line-clamp-4");
+                lerMais.classList.replace("fa-arrow-up", "fa-arrow-down");
+                lerMaisTexto.innerHTML = "Ler mais";
+                sinopseMini = true;
+            }
+        }
     </script>
 </body>
 </html>
