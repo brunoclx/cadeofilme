@@ -39,14 +39,13 @@
                         <li id="classificacao"></li>
                         <li id="ano">1987</li>
                         <li id="duracao"></li>
-                        <li id="generos"></li>
+                        <li id="nota-tmdb"></li>
                     </ul>
                 </div>  
                 <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar">
                     <ul class="flex w-max gap-2 py-2 whitespace-nowrap">
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
-                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Notas</a></li>
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
                         <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
                     </ul>
@@ -55,87 +54,42 @@
                 <button onclick="lerMais()" id="ler-mais-menos" class="text-white"><i class="fa-solid fa-arrow-down"></i> <span>Ler mais</span></button>                
             </div>            
         </section>
-        <section id="onde-assistir" class="p-5 bg-verydarkcade">
+        <section id="onde-assistir" class="p-5 bg-verydarkcade flex flex-col gap-3">
             <div class="text-white flex justify-between items-center">
                 <h2 class="text-lg font-bold">Onde assistir?</h2>
-                <p class="text-xs">powered by <a href="http://www.justwatch.com" target="_blank" rel="noopener noreferrer">Justwatch</a></p>
+                <p class="text-xs">powered by <a href="http://www.justwatch.com" target="_blank" rel="noopener noreferrer">Tmdb/Justwatch</a></p>
             </div>
              <div class="flex flex-col gap-3">
                 <div class="text-white flex flex-col gap-3">
-                    <p>Por assinatura:</p>
-                    <div class="servicos grid grid-cols-3 gap-5 pb-3 border-b border-darkcade">
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-8 rounded-full">
-                            <h4>Disney+</h4>
-                        </div>
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
-                            <h4>Netflix</h4>
-                        </div>
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
-                            <h4>Netflix c/ Anuncios</h4>
-                        </div>
-                    </div>
-                    <p>Alugar:</p>
-                    <div class="servicos grid grid-cols-3 gap-5 pb-3 border-b border-darkcade">
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-8 rounded-full">
-                            <h4>Disney+</h4>
-                        </div>
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
-                            <h4>Netflix</h4>
-                        </div>
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
-                            <h4>Netflix c/ Anuncios</h4>
-                        </div>
-                    </div> 
-                    <p>Comprar:</p>
-                    <div class="servicos grid grid-cols-3 gap-5">
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/97yvRBw1GzX7fXprcF80er19ot.jpg" alt="" class="h-8 rounded-full">
-                            <h4>Disney+</h4>
-                        </div>
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
-                            <h4>Netflix</h4>
-                        </div>
-                        <div class="servico flex gap-3 items-center text-xs">
-                            <img src="https://media.themoviedb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg" alt=""  class="h-8 rounded-full">
-                            <h4>Netflix c/ Anuncios</h4>
-                        </div>
+                    <div id="assistir-gratis" class="servicos flex flex-col gap-5" style="display: none;">
+                        <p class="mb-[10px]">Grátis:</p>
+                        <div id="content-assistir-gratis" class="grid grid-cols-2 gap-5 pb-3 border-b border-darkcade"></div>                        
                     </div>                    
+                    <div id="por-assinatura" class="servicos flex flex-col gap-5" style="display: none;">
+                        <p class="mb-[10px]">Por assinatura:</p>
+                        <div id="content-por-assinatura" class="grid grid-cols-2 gap-5 pb-3 border-b border-darkcade"></div>                        
+                    </div>
+                    <div id="para-comprar" class="servicos flex flex-col gap-5" style="display: none;">
+                        <p class="mb-[10px]">Comprar:</p>
+                        <div id="content-para-comprar" class="grid grid-cols-2 gap-5 pb-3 border-b border-darkcade"></div>                        
+                    </div>
+                    <div id="para-alugar" class="servicos flex flex-col gap-5" style="display: none;">
+                        <p class="mb-[10px]">Comprar:</p>
+                        <div id="content-para-alugar" class="grid grid-cols-2 gap-5 pb-3 border-b border-darkcade"></div>                        
+                    </div>     
                 </div>
             </div>
         </section>
-        <section class="container px-5 w-full flex flex-col text-white gap-5">
-            <div id="notas" class="pb-5 border-b border-verydarkcade">
-                <h2 class="text-lg font-bold">Notas</h2>
-                <div class="avaliadores grid grid-cols-3 gap-5">
-                    <div class="avaliador text-center">
-                        <p class="font-semibold">8,1/10</p>
-                        <p class="text-xs">Imdb</p>
-                    </div>
-                    <div class="avaliador text-center">
-                        <p class="font-semibold">6.4/10</p>
-                        <p class="text-xs">Rotten Tomatoes</p>
-                    </div>
-                    <div class="avaliador text-center">
-                        <p class="font-semibold">7/10</p>
-                        <p class="text-xs">Tmdb</p>
-                    </div>
-                </div>
-            </div>
-            <div id="creditos" class="pb-5 border-b border-verydarkcade">
+        <section class="container px-5 w-full flex flex-col text-white gap-5">            
+            <div id="creditos" class="pb-5 border-b border-verydarkcade flex flex-col gap-3">
                 <h2 class="text-lg font-bold">Créditos</h2>
                 <div class="flex flex-col gap-2">
+                    <p id="generos" class="text-white"><strong>Gêneros:</strong></p>
                     <p id="elenco" class="text-white"><strong>Elenco:</strong></p>
                     <p class="text-white"><strong>Diretor:</strong> <span id="diretor"></span></p>
                 </div>                
             </div>
-            <div class="mais-opcoes">
+            <div class="mais-opcoes flex flex-col gap-3">
                 <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
                 <ul class="lista-mais-opcoes grid grid-cols-3 gap-5 mt-[5px]">
                     <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
@@ -169,7 +123,15 @@
             let duracao = document.getElementById("duracao");
             let anoLancamento = document.getElementById("ano");
             let classificacaoFilme = document.getElementById("classificacao");
+            let notaImdb = document.getElementById("nota-tmdb");
+
             let sinopse = document.getElementById("sinopse");
+            
+            let assistirGratis = document.getElementById("assistir-gratis");
+            let contentAssistirGratis = document.getElementById("content-assistir-gratis");
+            let porAssinatura = document.getElementById("por-assinatura");
+            let contentPorAssinatura = document.getElementById("content-por-assinatura");
+            
             let generos = document.getElementById("generos");
             let elenco = document.getElementById("elenco");
             let diretor = document.getElementById("diretor");
@@ -199,19 +161,7 @@
                 backdrop[0].style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${dados.backdrop_path})`;
                 tituloFilme.innerHTML = dados.title || dados.name;                
 
-                let contaGenero = 0;
-                let todosGeneros = dados.genres;
-                todosGeneros.forEach(genero => {
-                    let novoGenero = document.createElement("span");
-                    contaGenero ++;
-
-                    if(contaGenero < todosGeneros.length){
-                        novoGenero.innerHTML = `<a href="">${genero.name}</a>/`;
-                    }else if(contaGenero = todosGeneros.length){
-                        novoGenero.innerHTML = `<a href="">${genero.name}</a>`;
-                    }
-                    generos.appendChild(novoGenero);
-                });
+                
 
                 duracao.innerHTML = `${dados.runtime} min`;
 
@@ -221,16 +171,102 @@
                 
                 anoLancamento.innerHTML = `${dados.release_date.split("-")[0]}`;
 
+                let idImdb = dados.imdb_id;
+                
+                async function ApiImdb(idFilme) {
+                    idFilme = idImdb;
+                    try {
+                        const RESPOSTAIMDB = await fetch(`https://rest.imdbapi.dev/v2/titles/${idFilme}`);
+                        const dadosImdb = await RESPOSTAIMDB.json();
+                        notaImdb.innerHTML = `${dadosImdb.rating.aggregate_rating}/10`;
+                    } catch (error) {
+                        console.log("Erro", error);
+                    }
+                }
+                ApiImdb();
+
                 sinopse.innerHTML = `${dados.overview}`;
 
                 //console.log(watchProviders);
                 let watchProvidersRetorno = watchProviders.results.BR;
+                
+                let assistirGratisArr = watchProvidersRetorno.ads;
+                let porAssinaturaArr = watchProvidersRetorno.flatrate;
 
-                console.log(elencoCreditos);
+                if(assistirGratisArr){
+                    assistirGratis.style.display = "block";
+                    assistirGratisArr.forEach(servico => {
+                        let novoServico = document.createElement("div");
+                        let imagemServico = document.createElement("img");
+                        let nomeServico = document.createElement("p");
+                        novoServico.classList.add(
+                            "servico",
+                            "flex",
+                            "gap-3",
+                            "items-center",
+                            "text-xs");
+                        imagemServico.classList.add(
+                            "h-8",
+                            "rounded-full"
+                        );
+                        imagemServico.setAttribute("src", `https://media.themoviedb.org/t/p/original/${servico.logo_path}`);
+                        let nomeServicoretorno = servico.provider_name;
+                        nomeServico.innerHTML = nomeServicoretorno;
+                        contentAssistirGratis.appendChild(novoServico);
+                        novoServico.append(imagemServico, nomeServico);
+                    });
+                }
+
+                if(porAssinaturaArr){
+                    porAssinatura.style.display = "block";
+                    porAssinaturaArr.forEach(servico => {
+                        let novoServico = document.createElement("div");
+                        let imagemServico = document.createElement("img");
+                        let nomeServico = document.createElement("p");
+                        novoServico.classList.add(
+                            "servico",
+                            "flex",
+                            "gap-3",
+                            "items-center",
+                            "text-xs");
+                        imagemServico.classList.add(
+                            "h-8",
+                            "rounded-full"
+                        );
+                        imagemServico.setAttribute("src", `https://media.themoviedb.org/t/p/original/${servico.logo_path}`);
+                        let nomeServicoretorno = servico.provider_name;
+                        switch (nomeServicoretorno){
+                            case "Netflix Standard with Ads":
+                                nomeServico.innerHTML = "Netflix com anúncios";
+                            default:
+                                nomeServico.innerHTML = nomeServicoretorno;
+                        }
+                        contentPorAssinatura.appendChild(novoServico);
+                        novoServico.append(imagemServico, nomeServico);
+                    });
+                }
+
+
+
+                console.log(watchProvidersRetorno);
 
                 const elencoCast = elencoCreditos.cast.filter(  // crio uma variavel que filtra o resultado, acessando o obejto results e filtro
                     item => item.known_for_department === "Acting"
                 );
+
+                let contaGenero = 0;
+                let todosGeneros = dados.genres;
+                todosGeneros.forEach(genero => {
+                    let novoGenero = document.createElement("span");
+                    contaGenero ++;
+
+                    if(contaGenero < todosGeneros.length){
+                        novoGenero.innerHTML = ` <a href="">${genero.name}</a>,`;
+                    }else if(contaGenero = todosGeneros.length){
+                        novoGenero.innerHTML = ` <a href="">${genero.name}</a>.`;
+                    }
+                    generos.appendChild(novoGenero);
+                });
 
                 let contaelenco = 0;
                 elencoCast.forEach(cast => {
@@ -244,10 +280,9 @@
                     }
                     elenco.appendChild(novoCast);
                 });
-                console.log(elencoCast);
-
                 let elencoDiretor = elencoCreditos.crew.find(item => item.job === "Director");
                 diretor.innerHTML = `${elencoDiretor.name}.`;
+                
                 
 
             } catch (error) {
