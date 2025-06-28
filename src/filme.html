@@ -74,8 +74,8 @@
                         <div id="content-para-comprar" class="grid grid-cols-2 gap-5 pb-3 border-b border-darkcade"></div>                        
                     </div>
                     <div id="para-alugar" class="servicos flex flex-col gap-5" style="display: none;">
-                        <p class="mb-[10px]">Comprar:</p>
-                        <div id="content-para-alugar" class="grid grid-cols-2 gap-5 pb-3 border-b border-darkcade"></div>                        
+                        <p class="mb-[10px]">Alugar:</p>
+                        <div id="content-para-alugar" class="grid grid-cols-2 gap-5"></div>                        
                     </div>     
                 </div>
             </div>
@@ -91,15 +91,7 @@
             </div>
             <div class="mais-opcoes flex flex-col gap-3">
                 <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
-                <ul class="lista-mais-opcoes grid grid-cols-3 gap-5 mt-[5px]">
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-
-                </ul>
+                <ul id="lista-mais-opcoes" class="grid grid-cols-3 gap-5 mt-[5px]"></ul>
             </div>
         </section>
     </main>
@@ -111,6 +103,7 @@
             <li><a href="">Github</a></li>            
         </ul>
     </footer>
+    <script src="assets/js/expandir-sinopse.js"></script>
     <script src="assets/js/tema-escuro.js"></script>
     <script>
         const queryString = window.location.search;
@@ -131,10 +124,16 @@
             let contentAssistirGratis = document.getElementById("content-assistir-gratis");
             let porAssinatura = document.getElementById("por-assinatura");
             let contentPorAssinatura = document.getElementById("content-por-assinatura");
+            let paraComprar = document.getElementById("para-comprar");
+            let contentParaComprar = document.getElementById("content-para-comprar");
+            let paraAlugar = document.getElementById("para-alugar");
+            let contentParaAlugar = document.getElementById("content-para-alugar");
             
             let generos = document.getElementById("generos");
             let elenco = document.getElementById("elenco");
             let diretor = document.getElementById("diretor");
+
+            let maisOpcoes = document.getElementById("lista-mais-opcoes");
             
 
             try {
@@ -151,12 +150,14 @@
                     fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}?language=pt-BR`, options),
                     fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}/release_dates`, options),
                     fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}/watch/providers`, options),
-                    fetch(`https://api.themoviedb.org/3/movie//${termoPesquisado}/credits`, options)
+                    fetch(`https://api.themoviedb.org/3/movie//${termoPesquisado}/credits`, options),
+                    fetch(`https://api.themoviedb.org/3/movie/${termoPesquisado}/recommendations?language=pt-BR`, options)
                 ]);
                 let dados = await RESPOSTA[0].json();
                 let classificacao = await RESPOSTA[1].json();
                 let watchProviders = await RESPOSTA[2].json();
                 let elencoCreditos = await RESPOSTA[3].json();
+                let similar = await RESPOSTA[4].json();
 
                 backdrop[0].style.backgroundImage = `url(https://image.tmdb.org/t/p/w780${dados.backdrop_path})`;
                 tituloFilme.innerHTML = dados.title || dados.name;                
@@ -192,63 +193,73 @@
                 
                 let assistirGratisArr = watchProvidersRetorno.ads;
                 let porAssinaturaArr = watchProvidersRetorno.flatrate;
+                let paraComprarArr = watchProvidersRetorno.buy;
+                let paraAlugarArr = watchProvidersRetorno.rent;
+
+                function criarServico(servico){
+                    let novoServico = document.createElement("div");
+                    let imagemServico = document.createElement("img");
+                    let nomeServico = document.createElement("p");
+                    novoServico.classList.add(
+                        "servico",
+                        "flex",
+                        "gap-3",
+                        "items-center",
+                        "text-xs");
+                    imagemServico.classList.add(
+                        "h-8",
+                        "rounded-full"
+                    );
+                    imagemServico.setAttribute("src", `https://media.themoviedb.org/t/p/original/${servico.logo_path}`);
+                    let nomeServicoretorno = servico.provider_name;
+                    switch (nomeServicoretorno){
+                        case "Netflix Standard with Ads":
+                            nomeServico.innerHTML = "Netflix com anúncios";
+                            break;
+                        case "Google Play Movies":
+                            nomeServico.innerHTML = "Google Play Filmes";
+                            break;
+                        case "Amazon Prime Video with Ads":
+                            nomeServico.innerHTML = "Amazon Prime Vídeo com anúncios"
+                            break;
+                        default:
+                            nomeServico.innerHTML = nomeServicoretorno;
+                    }
+                    novoServico.append(imagemServico, nomeServico);
+                    return novoServico;
+                }
 
                 if(assistirGratisArr){
                     assistirGratis.style.display = "block";
                     assistirGratisArr.forEach(servico => {
-                        let novoServico = document.createElement("div");
-                        let imagemServico = document.createElement("img");
-                        let nomeServico = document.createElement("p");
-                        novoServico.classList.add(
-                            "servico",
-                            "flex",
-                            "gap-3",
-                            "items-center",
-                            "text-xs");
-                        imagemServico.classList.add(
-                            "h-8",
-                            "rounded-full"
-                        );
-                        imagemServico.setAttribute("src", `https://media.themoviedb.org/t/p/original/${servico.logo_path}`);
-                        let nomeServicoretorno = servico.provider_name;
-                        nomeServico.innerHTML = nomeServicoretorno;
-                        contentAssistirGratis.appendChild(novoServico);
-                        novoServico.append(imagemServico, nomeServico);
+                        const elementoServico = criarServico(servico); // preciso salvar em uma variavel o retorno da função para adicionar na div contentAssistirGratis
+                        contentAssistirGratis.appendChild(elementoServico);                         
                     });
                 }
 
                 if(porAssinaturaArr){
                     porAssinatura.style.display = "block";
                     porAssinaturaArr.forEach(servico => {
-                        let novoServico = document.createElement("div");
-                        let imagemServico = document.createElement("img");
-                        let nomeServico = document.createElement("p");
-                        novoServico.classList.add(
-                            "servico",
-                            "flex",
-                            "gap-3",
-                            "items-center",
-                            "text-xs");
-                        imagemServico.classList.add(
-                            "h-8",
-                            "rounded-full"
-                        );
-                        imagemServico.setAttribute("src", `https://media.themoviedb.org/t/p/original/${servico.logo_path}`);
-                        let nomeServicoretorno = servico.provider_name;
-                        switch (nomeServicoretorno){
-                            case "Netflix Standard with Ads":
-                                nomeServico.innerHTML = "Netflix com anúncios";
-                            default:
-                                nomeServico.innerHTML = nomeServicoretorno;
-                        }
-                        contentPorAssinatura.appendChild(novoServico);
-                        novoServico.append(imagemServico, nomeServico);
+                        const elementoServico = criarServico(servico); // aqui chamamos a função
+                        contentPorAssinatura.appendChild(elementoServico);        
                     });
                 }
 
+                if(paraComprarArr){
+                    paraComprar.style.display = "block";
+                    paraComprarArr.forEach(servico => {
+                        const elementoServico = criarServico(servico); // aqui chamamos a função
+                        contentParaComprar.appendChild(elementoServico);        
+                    });
+                }
 
-
-                console.log(watchProvidersRetorno);
+                if(paraAlugarArr){
+                    paraAlugar.style.display = "block";
+                    paraAlugarArr.forEach(servico => {
+                        const elementoServico = criarServico(servico); // aqui chamamos a função
+                        contentParaAlugar.appendChild(elementoServico);        
+                    });
+                }
 
                 const elencoCast = elencoCreditos.cast.filter(  // crio uma variavel que filtra o resultado, acessando o obejto results e filtro
                     item => item.known_for_department === "Acting"
@@ -283,6 +294,23 @@
                 let elencoDiretor = elencoCreditos.crew.find(item => item.job === "Director");
                 diretor.innerHTML = `${elencoDiretor.name}.`;
                 
+                let todosSimilar = similar.results;
+                let contaSimilar = 0;
+                todosSimilar.forEach(similar => {
+                    if(contaSimilar <= 5){
+                        let novoSimilar = document.createElement("li");
+                        let linkNovoSimilar = document.createElement("a");
+                        let imagemNovoSimilar = document.createElement("img");
+                        linkNovoSimilar.setAttribute("href", `filme.html?id=${similar.id}`);
+                        imagemNovoSimilar.setAttribute("src", `https://media.themoviedb.org/t/p/w600_and_h900_bestv2/${similar.poster_path}`);
+                        maisOpcoes.appendChild(novoSimilar);
+                        novoSimilar.appendChild(linkNovoSimilar);
+                        linkNovoSimilar.appendChild(imagemNovoSimilar);
+                        contaSimilar++
+                    }
+                });
+
+
                 
 
             } catch (error) {
@@ -292,25 +320,7 @@
         detalhesFilme();
     </script>
     <script>
-       let sinopseMini = true;
-       
-       function lerMais(){
-            const lerMais = document.querySelector("#ler-mais-menos i");
-            const lerMaisTexto = document.querySelector("#ler-mais-menos span");
-            const txtSinopse = document.querySelector("#txt-sinopse");
-            
-            if(sinopseMini){
-                txtSinopse.classList.remove("line-clamp-4");
-                lerMais.classList.replace("fa-arrow-down", "fa-arrow-up");
-                lerMaisTexto.innerHTML = "Ler menos";
-                sinopseMini = false;
-            }else{
-                txtSinopse.classList.add("line-clamp-4");
-                lerMais.classList.replace("fa-arrow-up", "fa-arrow-down");
-                lerMaisTexto.innerHTML = "Ler mais";
-                sinopseMini = true;
-            }
-        }
+
     </script>
 </body>
 </html>
