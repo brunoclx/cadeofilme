@@ -1,5 +1,4 @@
 let sinopseMini = true;
-
 function lerMais(){
     const lerMais = document.querySelector("#ler-mais-menos i");
     const lerMaisTexto = document.querySelector("#ler-mais-menos span");
