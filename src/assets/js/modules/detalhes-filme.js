@@ -33,6 +33,12 @@ async function detalhesFilme(termoPesquisado) {
     let paraAlugar = document.getElementById("para-alugar");
     let contentParaAlugar = document.getElementById("content-para-alugar");
 
+    let generos = document.getElementById("generos");
+    let elenco = document.getElementById("elenco");
+    let diretor = document.getElementById("diretor");
+
+    let maisOpcoes = document.getElementById("lista-mais-opcoes");
+
     try {  
         const options = { // crio uma const para passar as informações (opções)
             method: 'GET', // método usado GET
@@ -80,33 +86,32 @@ async function detalhesFilme(termoPesquisado) {
             let idImdb = dados.imdb_id; //Pega o ID Imdb que vem na Api
             apiImdb(idImdb, notaImdb); // passa via parametro para a função importada ApiImdb
 
-            sinopse.innerHTML = `${dados.overview}`;
+            sinopse.innerHTML = `${dados.overview}`; // Exibe no campo sinopse o valor de dados.overview
 
-            let watchProvidersRetorno = watchProviders.results.BR;            
-
-            console.log(watchProvidersRetorno);
+            let watchProvidersRetorno = watchProviders.results.BR; // pega aqui apenas os Serviços que estão na chave BR            
             
-            if (!watchProvidersRetorno){
-                let informarErro = document.createElement("p");
-                informarErro.classList.add("text-xs", "text-white");
-                informarErro.innerText = "No momento não encontramos este filme em nenhum serviço de streaming.";
-                ondeAssistir.appendChild(informarErro);
-            }else{
-                let conteudoServicos = document.createElement("div");
-                conteudoServicos.classList.add("flex", "flex-col", "gap-3");
-                ondeAssistir.appendChild(conteudoServicos);
+            if (!watchProvidersRetorno){ // se a variavel que tem os serviços que estão na chave BR estiver vazia
+                let informarErro = document.createElement("p"); // cria um elemento p
+                informarErro.classList.add("text-xs", "text-white"); // adiciona essas classes
+                informarErro.innerText = "No momento não encontramos este filme em nenhum serviço de streaming."; // adiciona este texto
+                ondeAssistir.appendChild(informarErro);// adiciona o elemento p criado dentro da div ondeAssistir
+            }else{ // se tiver conteúdo
+                let conteudoServicos = document.createElement("div"); // cria um elemento div
+                conteudoServicos.classList.add("flex", "flex-col", "gap-3"); // adiciona essas classes
+                ondeAssistir.appendChild(conteudoServicos); // adiciona a div criada em OndeAssistir
+                
+                const ordem = ["ads", "flatrate", "rent", "buy"]; // crio um array com a ordem que eu quero
 
-                console.log(watchProvidersRetorno);
+                let temTipo = []; //crio um array para contar os serviços exibidos
 
-                const ordem = ["ads", "flatrate", "rent", "buy"];
-
-                ordem.forEach(tipo => {
+                ordem.forEach(tipo => { // faço um forEach no array
                     const servicos = watchProvidersRetorno[tipo];
                     if (!servicos || !servicos.length) return;
 
                     switch (tipo) {
                         case "ads":
                             const servicosBoxTipoAds = criarBoxServico(conteudoServicos, "Grátis");
+                            temTipo.push(servicosBoxTipoAds);
                             servicos.forEach(servico => {
                                 const elementoServico = criarServico(servico);
                                 servicosBoxTipoAds.appendChild(elementoServico);
@@ -115,6 +120,7 @@ async function detalhesFilme(termoPesquisado) {
 
                         case "flatrate":
                             const servicosBoxTipoFlatrate = criarBoxServico(conteudoServicos, "Por Assinatura");
+                            temTipo.push(servicosBoxTipoFlatrate);
                             servicos.forEach(servico => {
                                 const elementoServico = criarServico(servico);
                                 servicosBoxTipoFlatrate.appendChild(elementoServico);
@@ -123,6 +129,7 @@ async function detalhesFilme(termoPesquisado) {
 
                         case "rent":
                             const servicosBoxTipoRent = criarBoxServico(conteudoServicos, "Alugar");
+                            temTipo.push(servicosBoxTipoRent);
                             servicos.forEach(servico => {
                                 const elementoServico = criarServico(servico);
                                 servicosBoxTipoRent.appendChild(elementoServico);
@@ -131,6 +138,7 @@ async function detalhesFilme(termoPesquisado) {
 
                         case "buy":
                             const servicosBoxTipoBuy = criarBoxServico(conteudoServicos, "Comprar");
+                            temTipo.push(servicosBoxTipoBuy);
                             servicos.forEach(servico => {
                                 const elementoServico = criarServico(servico);
                                 servicosBoxTipoBuy.appendChild(elementoServico);
@@ -139,7 +147,62 @@ async function detalhesFilme(termoPesquisado) {
                     }
                 });
 
+                if (temTipo.length > 1) {
+                    temTipo.forEach((box, index) => {
+                       if (index < temTipo.length - 1) {
+                            box.classList.add("border-b", "border-darkcade", "pb-3");
+                        } 
+                    });
+                }
                 
+                let contaGenero = 0;
+                let todosGeneros = dados.genres;
+                todosGeneros.forEach(genero => {
+                    let novoGenero = document.createElement("span");
+                    contaGenero ++;
+                    if(contaGenero < todosGeneros.length){
+                        novoGenero.innerHTML = ` <a href="">${genero.name}</a>,`;
+                    }else if(contaGenero = todosGeneros.length){
+                        novoGenero.innerHTML = ` <a href="">${genero.name}</a>.`;
+                    }
+                    generos.appendChild(novoGenero);
+                });
+
+                const elencoCast = elencoCreditos.cast.filter(  // crio uma variavel que filtra o resultado, acessando o obejto results e filtro
+                    item => item.known_for_department === "Acting"
+                );
+
+                let contaelenco = 0;
+                elencoCast.forEach(cast => {
+                    let novoCast = document.createElement("span");
+                    contaelenco ++;
+                    if(contaelenco < 10){
+                        novoCast.innerHTML = ` <a href="">${cast.name}</a>,`;
+                    }else if(contaelenco == 10){
+                        novoCast.innerHTML = ` <a href="">${cast.name}.</a>`;
+                    }
+                    elenco.appendChild(novoCast);
+                });
+
+                let elencoDiretor = elencoCreditos.crew.find(item => item.job === "Director");
+                diretor.innerHTML = `${elencoDiretor.name}.`;
+
+                let todosSimilar = similar.results;
+                let contaSimilar = 0;
+                todosSimilar.forEach(similar => {
+                    if(contaSimilar <= 5){
+                        let novoSimilar = document.createElement("li");
+                        let linkNovoSimilar = document.createElement("a");
+                        let imagemNovoSimilar = document.createElement("img");
+                        linkNovoSimilar.setAttribute("href", `filme.html?id=${similar.id}`);
+                        imagemNovoSimilar.setAttribute("src", `https://media.themoviedb.org/t/p/w600_and_h900_bestv2/${similar.poster_path}`);
+                        maisOpcoes.appendChild(novoSimilar);
+                        novoSimilar.appendChild(linkNovoSimilar);
+                        linkNovoSimilar.appendChild(imagemNovoSimilar);
+                        contaSimilar++
+                    }
+                });
+
             }            
         } 
     } catch (error) {

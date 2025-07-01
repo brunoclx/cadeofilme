@@ -6,7 +6,7 @@ export function criarBoxServico(conteudoServicos, valorNomeBoxTipo){
     
     nomeBoxTipo.innerText = valorNomeBoxTipo;
     
-    servicosBoxTipo.classList.add("grid", "grid-cols-2", "gap-5", "pb-3");
+    servicosBoxTipo.classList.add("grid", "grid-cols-2", "gap-5");
     novoBoxTipo.append(nomeBoxTipo, servicosBoxTipo);
     conteudoServicos.appendChild(novoBoxTipo);
 
