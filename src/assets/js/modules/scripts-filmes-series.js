@@ -2,11 +2,11 @@ export function criarBoxServico(conteudoServicos, valorNomeBoxTipo){
     let novoBoxTipo = document.createElement("div");
     let nomeBoxTipo = document.createElement("p");
     let servicosBoxTipo = document.createElement("div");
-    novoBoxTipo.classList.add("text-white", "flex", "flex-col", "gap-5");
+    novoBoxTipo.classList.add("text-white", "flex", "flex-col", "gap-3");
     
-    nomeBoxTipo.innerText = valorNomeBoxTipo;
+    nomeBoxTipo.innerHTML = `<strong>${valorNomeBoxTipo}</strong>`;
     
-    servicosBoxTipo.classList.add("grid", "grid-cols-2", "gap-5");
+    servicosBoxTipo.classList.add("grid", "grid-cols-2", "gap-3");
     novoBoxTipo.append(nomeBoxTipo, servicosBoxTipo);
     conteudoServicos.appendChild(novoBoxTipo);
 

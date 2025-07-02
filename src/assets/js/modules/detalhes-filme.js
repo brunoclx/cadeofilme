@@ -157,13 +157,14 @@ async function detalhesFilme(termoPesquisado) {
                 
                 let contaGenero = 0;
                 let todosGeneros = dados.genres;
+                console.log(todosGeneros);
                 todosGeneros.forEach(genero => {
                     let novoGenero = document.createElement("span");
                     contaGenero ++;
                     if(contaGenero < todosGeneros.length){
-                        novoGenero.innerHTML = ` <a href="">${genero.name}</a>,`;
+                        novoGenero.innerHTML = ` <a href="genero.html?id=${genero.id}">${genero.name}</a>,`;
                     }else if(contaGenero = todosGeneros.length){
-                        novoGenero.innerHTML = ` <a href="">${genero.name}</a>.`;
+                        novoGenero.innerHTML = ` <a href="genero.html?id=${genero.id}">${genero.name}</a>.`;
                     }
                     generos.appendChild(novoGenero);
                 });
@@ -177,15 +178,15 @@ async function detalhesFilme(termoPesquisado) {
                     let novoCast = document.createElement("span");
                     contaelenco ++;
                     if(contaelenco < 10){
-                        novoCast.innerHTML = ` <a href="">${cast.name}</a>,`;
+                        novoCast.innerHTML = ` <a href="pessoa.html?id=${cast.id}">${cast.name}</a>,`;
                     }else if(contaelenco == 10){
-                        novoCast.innerHTML = ` <a href="">${cast.name}.</a>`;
+                        novoCast.innerHTML = ` <a href="pessoa.html?id=${cast.id}">${cast.name}.</a>`;
                     }
                     elenco.appendChild(novoCast);
                 });
 
                 let elencoDiretor = elencoCreditos.crew.find(item => item.job === "Director");
-                diretor.innerHTML = `${elencoDiretor.name}.`;
+                diretor.innerHTML = `<a href="pessoa.html?id=${elencoDiretor.id}">${elencoDiretor.name}.</a>`;
 
                 let todosSimilar = similar.results;
                 let contaSimilar = 0;

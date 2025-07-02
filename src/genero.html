@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="light" class="scroll-smooth">
+<html lang="pt-br" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,31 +29,6 @@
         </div>
     </header>
     <main class="min-h-screen flex flex-col gap-5">
-        <section id="informacoes-principais" class="container px-5 w-full flex flex-col justify-start gap-5 hidden">
-            <div class="backdrop flex w-full h-48 mt-[15px] bg-cover rounded-md"></div>
-            <div class="detalhes flex flex-col justify-start gap-4">
-                <h1 class="text-2xl text-white font-bold" id="titulo-filme"></h1> 
-                <div class="dados-conteudo text-white text-xs">
-                    <ul class="flex justify-between">
-                        <li>Filme</li>
-                        <li id="classificacao"></li>
-                        <li id="ano"></li>
-                        <li id="duracao"></li>
-                        <li id="nota-tmdb"></li>
-                    </ul>
-                </div>  
-                <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar sticky top-0">
-                    <ul class="flex w-max gap-2 py-2 whitespace-nowrap">
-                        <li><a href="#informacoes-principais" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
-                        <li><a href="#onde-assistir" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
-                        <li><a href="#bloco-creditos" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
-                        <li><a href="#mais-opcoes" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
-                    </ul>
-                </div>              
-                <p id="txt-sinopse" class="text-white line-clamp-4"><strong>Sinopse:</strong> <span id="sinopse"></span></p>
-                <button onclick="lerMais()" id="ler-mais-menos" class="text-white"><i class="fa-solid fa-arrow-down"></i> <span>Ler mais</span></button>                
-            </div>            
-        </section>
 
         <!-- Inicio Bloco - Informações Principais -->
         <section id="informacoes-principais" class="container px-5 w-full flex flex-col justify-start gap-5 hidden">
@@ -69,12 +44,12 @@
                         <li id="nota-tmdb"></li>
                     </ul>
                 </div>  
-                <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar>
+                <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar">
                     <ul class="flex w-max gap-2 py-2 whitespace-nowrap">
-                        <li><a href="#informacoes-principais" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
-                        <li><a href="#onde-assistir" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
-                        <li><a href="#bloco-creditos" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
-                        <li><a href="#mais-opcoes" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
+                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
                     </ul>
                 </div>              
                 <p id="txt-sinopse" class="text-white line-clamp-4"><strong>Sinopse:</strong> <span id="sinopse"></span></p>
@@ -102,7 +77,7 @@
                     <p class="text-white"><strong>Diretor:</strong> <span id="diretor"></span></p>
                 </div>                
             </div>
-            <div id="mais-opcoes" class="flex flex-col gap-3">
+            <div class="mais-opcoes flex flex-col gap-3">
                 <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
                 <ul id="lista-mais-opcoes" class="grid grid-cols-3 gap-5 mt-[5px]"></ul>
             </div>
