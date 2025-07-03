@@ -205,7 +205,11 @@ async function detalhesFilme(termoPesquisado) {
                 let todosSimilar = similar.results;
                 console.log(todosSimilar);
                 if(todosSimilar.length == 0){
-                    boxMaisOpcoes.classList.add("hidden");
+                    maisOpcoes.classList.add('hidden');
+                    let informarErro = document.createElement("p"); // cria um elemento p
+                    informarErro.classList.add("text-xs", "text-white"); // adiciona essas classes
+                    informarErro.innerText = ":( Poxa! Não encontramos títulos semelhantes para teste filme."; // adiciona este texto   
+                    boxMaisOpcoes.appendChild(informarErro);// adiciona o elemento p criado dentro da div ondeAssistir
                 }else{
                     boxMaisOpcoes.classList.remove("hidden");
                     let contaSimilar = 0;
