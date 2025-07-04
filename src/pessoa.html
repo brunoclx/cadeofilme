@@ -6,16 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/output.css">
     <title>Cadê o Filme?</title>
-    <style>
-        /* Oculta a scrollbar apenas visualmente */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE e Edge */
-            scrollbar-width: none;     /* Firefox */
-        }
-    </style>
 </head>
 <body class="bg-white dark:bg-darkcade">
     <header class="container px-5 text-white">
@@ -29,63 +19,30 @@
         </div>
     </header>
     <main class="min-h-screen flex flex-col gap-5">
-
-        <!-- Inicio Bloco - Informações Principais -->
-        <section id="informacoes-principais" class="container px-5 w-full flex flex-col justify-start gap-5 hidden">
-            <div class="backdrop flex w-full h-48 mt-[15px] bg-cover rounded-md"></div>
-            <div class="detalhes flex flex-col justify-start gap-4">
-                <h1 class="text-2xl text-white font-bold" id="titulo-filme"></h1> 
-                <div class="dados-conteudo text-white text-xs">
-                    <ul class="flex justify-between">
-                        <li>Filme</li>
-                        <li id="classificacao"></li>
-                        <li id="ano"></li>
-                        <li id="duracao"></li>
-                        <li id="nota-tmdb"></li>
-                    </ul>
-                </div>  
-                <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar">
-                    <ul class="flex w-max gap-2 py-2 whitespace-nowrap">
-                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
-                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
-                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
-                        <li><a href="" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
-                    </ul>
-                </div>              
-                <p id="txt-sinopse" class="text-white line-clamp-4"><strong>Sinopse:</strong> <span id="sinopse"></span></p>
-                <button onclick="lerMais()" id="ler-mais-menos" class="text-white"><i class="fa-solid fa-arrow-down"></i> <span>Ler mais</span></button>                
-            </div>            
-        </section>
-        <!-- Fim Bloco - Informações Principais -->
-
-        <!-- Inicio Bloco - Onde Assistir -->
-        <section id="onde-assistir" class="p-5 bg-verydarkcade flex flex-col gap-3 hidden">
-            <div class="text-white flex justify-between items-center">
-                <h2 class="text-lg font-bold">Onde assistir?</h2>
-                <p class="text-xs">powered by <a href="http://www.justwatch.com" target="_blank" rel="noopener noreferrer">Tmdb/Justwatch</a></p>
-            </div>             
-        </section>
-        <!-- Fim Bloco - Onde Assistir -->
-
-        <!-- Inicio Bloco - Créditos e Titutlos Semelhantes -->
-        <section id="bloco-creditos" class="container px-5 w-full flex flex-col text-white gap-5 hidden">            
-            <div id="creditos" class="pb-5 border-b border-verydarkcade flex flex-col gap-3">
-                <h2 class="text-lg font-bold">Créditos</h2>
-                <div class="flex flex-col gap-2">
-                    <p id="generos" class="text-white"><strong>Gêneros:</strong></p>
-                    <p id="elenco" class="text-white"><strong>Elenco:</strong></p>
-                    <p class="text-white"><strong>Diretor:</strong> <span id="diretor"></span></p>
-                </div>                
+        <article id="bio" class="container px-5 w-full text-white flex flex-col gap-3">
+            <div id="avatar" class="mt-[15px] flex justify-center">
+                <img src="" alt="" class="h-[250px] rounded-sm">
             </div>
-            <div class="mais-opcoes flex flex-col gap-3">
-                <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
-                <ul id="lista-mais-opcoes" class="grid grid-cols-3 gap-5 mt-[5px]"></ul>
+            <div id="mini-bio">
+                <h1 class="text-2xl text-white font-bold text-center mb-3"></h1>
+                <p class="mb-2"></p>
+                <p class="text-xs">Fonte: TMDB</p>
             </div>
+        </article>
+        <section id="conhecido-por" class="container px-5 w-full flex flex-col text-white gap-3">
+            <h2 class="text-lg font-bold">Conhecido por:</h2>
+            <ul id="lista-mais-opcoes" class="grid grid-cols-3 gap-5 mt-[5px]">
+                <li><img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/k1pwKQs2erSy6q4qhi0tTaXrSOf.jpg" alt=""></li>
+                <li><img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/k1pwKQs2erSy6q4qhi0tTaXrSOf.jpg" alt=""></li>
+                <li><img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/k1pwKQs2erSy6q4qhi0tTaXrSOf.jpg" alt=""></li>
+                <li><img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/k1pwKQs2erSy6q4qhi0tTaXrSOf.jpg" alt=""></li>
+                <li><img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/k1pwKQs2erSy6q4qhi0tTaXrSOf.jpg" alt=""></li>
+                <li><img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/k1pwKQs2erSy6q4qhi0tTaXrSOf.jpg" alt=""></li>
+            </ul>
         </section>
-        <!-- Fim Bloco - Créditos e Titutlos Semelhantes -->
         <section id="erro-buscar" class="container p-5 w-full flex flex-col text-white gap-3 hidden">
             <h3 class="text-lg font-bold text-white">Ops, Houve algum erro :(</h3>
-            <p>Não encontramos o filme que você procura, por favor, reveja os termos e tente novamente.</p>
+            <p>Não conseguimos encontrar essa pessoa. Dá uma olhadinha nos termos e tenta de novo?</p>
         </section>
     </main>
     <footer class="text-white p-5 gap-5 mt-4 flex flex-col bg-darkcade dark:bg-verydarkcade sm:flex-row justify-center sm:justify-between">
@@ -96,10 +53,7 @@
             <li><a href="">Github</a></li>            
         </ul>
     </footer>
-    <script type="module" src="assets/js/modules/detalhes-filme.js"></script>
-    <script type="module" src="assets/js/modules/imdbApi.js"></script>
-    <script type="module" src="assets/js/modules/scripts-filmes-series.js"></script>
-    <script src="assets/js/expandir-sinopse.js"></script>
+    <script type="module" src="assets/js/modules/detalhes-pessoa.js"></script>
     <script src="assets/js/tema-escuro.js"></script>
 </body>
 </html>

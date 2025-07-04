@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="light">
+<html lang="pt-br" data-theme="light" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/output.css">
-    <title>Cadê o Filme?</title>
+    <title></title>
+    <style>
+        /* Oculta a scrollbar apenas visualmente */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE e Edge */
+            scrollbar-width: none;     /* Firefox */
+        }
+    </style>
 </head>
 <body class="bg-white dark:bg-darkcade">
     <header class="container px-5 text-white">
         <div class="conteudo-header flex justify-between items-center py-[15px] border-b border-white">
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-arrow-left"></i>
             <div class="logo">
                 <img src="assets/imagens/logo-white.png" class="hidden dark:block h-[40px]" alt="Logo Cadê o Filme na cor branca">
                 <img src="assets/imagens/logo-dark.png" class="block dark:hidden h-[40px]" alt="Logo Cadê o Filme na cor preta">
@@ -18,44 +28,63 @@
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
     </header>
-    <main class="container px-5 min-h-screen flex">        
-        <section class="w-full flex flex-col justify-start gap-5">
-            <div class="backdrop flex w-full h-48 mt-[15px] bg-[url(https://media.themoviedb.org/t/p/w1000_and_h563_face/sccDflItNho4OiHkzpiDxB2fUFw.jpg)] bg-cover rounded-md"></div>
+    <main class="min-h-screen flex flex-col gap-5">
+        <!-- Inicio Bloco - Informações Principais -->
+        <section id="informacoes-principais" class="container px-5 w-full flex flex-col justify-start gap-5 hidden">
+            <div class="backdrop flex w-full h-48 mt-[15px] bg-cover rounded-md"></div>
             <div class="detalhes flex flex-col justify-start gap-4">
+                <h1 class="text-2xl text-white font-bold" id="titulo-filme"></h1> 
                 <div class="dados-conteudo text-white text-xs">
                     <ul class="flex justify-between">
-                        <li><a href="">TV</a></li>
-                        <li>12</li>
-                        <li>2007</li>
-                        <li>12 temporadas</li>
-                        <li>IMDb: 8.4/10</li>
+                        <li>Série</li>
+                        <li id="classificacao"></li>
+                        <li id="ano"></li>
+                        <li id="temporadas"></li>
+                        <li id="nota-tmdb"></li>
                     </ul>
-                </div>
-                <h1 class="text-2xl text-white font-bold">Big Bang: A Teoria</h1>                
-                <div class="onde-assistir">
-                    <h2 class="text-lg font-bold text-white">Onde assistir?</h2>
-                    <ul class="flex gap-3 mt-[5px]">
-                        <li><img src="https://media.themoviedb.org/t/p/original/170ZfHTLT6ZlG38iLLpNYcBGUkG.jpg" alt="" class="h-10 rounded-md"></li>
-                        <li><img src="https://media.themoviedb.org/t/p/original/1Cyi87zUbeRHCzpm2wWekgr6EYw.jpg" alt=""  class="h-10 rounded-md"></li>
+                </div>  
+                <div class="acesso-rapido text-xs overflow-x-auto scroll-smooth no-scrollbar">
+                    <ul class="flex w-max gap-2 py-2 whitespace-nowrap">
+                        <li><a href="#informacoes-principais" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Geral</a></li>
+                        <li><a href="#onde-assistir" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Onde Assistir</a></li>                        
+                        <li><a href="#bloco-creditos" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Créditos</a></li>
+                        <li><a href="#mais-opcoes" class="border border-white rounded-full text-white px-3 py-[5px] pt-[4px] bg-verydarkcade">Titulos semelhantes</a></li>
                     </ul>
-                </div>
-                <p class="text-white"><span class="font-bold">Sinopse:</span> Leonard e Sheldon são dois jovens cientistas que moram juntos, sabem tudo de física, mas não parecem saber como se relacionar com mulheres. Seus únicos amigos são Howard e Rajesh, mas tudo pode mudar quando conhecem a nova vizinha, a bela Penny, que logo encanta Leonard.</p>
-                <div class="generos text-white">Gênero: <a href="">Comédia</a></div>
-                <div class="elenco text-white">Elenco: <a href="">Johnny Galecki</a>, <a href="">Jim Parsons</a></div>
-                <div class="direcao text-white">Criação: <a href="">Chuck Lorre</a>, <a href="">Bill Prady</a></div>  
-            </div>
-            <div class="mais-opcoes">
-                <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
-                <ul class="lista-mais-opcoes grid grid-cols-3 gap-5 mt-[5px]">
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/t48miSSfe7COqgbgMyRIyPVTBoM.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
-                    <li><a href=""><img src="https://media.themoviedb.org/t/p/w188_and_h282_bestv2/buiy7xS3Q78ii3HWFKL2GIoMu4N.jpg" alt=""></a></li>
+                </div>              
+                <p id="txt-sinopse" class="text-white line-clamp-4"><strong>Sinopse:</strong> <span id="sinopse"></span></p>
+                <button onclick="lerMais()" id="ler-mais-menos" class="text-white"><i class="fa-solid fa-arrow-down"></i> <span>Ler mais</span></button>                
+            </div>            
+        </section>
+        <!-- Fim Bloco - Informações Principais -->
 
-                </ul>
+        <!-- Inicio Bloco - Onde Assistir -->
+        <section id="onde-assistir" class="p-5 bg-verydarkcade flex flex-col gap-3 hidden">
+            <div class="text-white flex justify-between items-center">
+                <h2 class="text-lg font-bold">Onde assistir?</h2>
+                <p class="text-xs">powered by <a href="http://www.justwatch.com" target="_blank" rel="noopener noreferrer">Tmdb/Justwatch</a></p>
+            </div>             
+        </section>
+        <!-- Fim Bloco - Onde Assistir -->
+
+        <!-- Inicio Bloco - Créditos e Titutlos Semelhantes -->
+        <section id="bloco-creditos" class="container px-5 w-full flex flex-col text-white gap-5 hidden">            
+            <div id="creditos" class="pb-5 border-b border-verydarkcade flex flex-col gap-3">
+                <h2 class="text-lg font-bold">Créditos</h2>
+                <div class="flex flex-col gap-2">
+                    <p id="generos" class="text-white"><strong>Gêneros:</strong></p>
+                    <p id="elenco" class="text-white"><strong>Elenco:</strong></p>
+                    <p id="criador" class="text-white"><strong>Criado por:</strong></p>
+                </div>                
             </div>
+            <div id="mais-opcoes" class="flex flex-col gap-3">
+                <h2 class="text-lg font-bold text-white">Titulos semelhantes:</h2>
+                <ul id="lista-mais-opcoes" class="grid grid-cols-3 gap-5 mt-[5px]"></ul>
+            </div>
+        </section>
+        <!-- Fim Bloco - Créditos e Titutlos Semelhantes -->
+        <section id="erro-buscar" class="container p-5 w-full flex flex-col text-white gap-3 hidden">
+            <h3 class="text-lg font-bold text-white">Ops, Houve algum erro :(</h3>
+            <p>Não conseguimos encontrar essa série. Dá uma olhadinha nos termos e tenta de novo?</p>
         </section>
     </main>
     <footer class="text-white p-5 gap-5 mt-4 flex flex-col bg-darkcade dark:bg-verydarkcade sm:flex-row justify-center sm:justify-between">
@@ -66,6 +95,10 @@
             <li><a href="">Github</a></li>            
         </ul>
     </footer>
+    <script type="module" src="assets/js/modules/detalhes-series.js"></script>
+    <script type="module" src="assets/js/modules/imdbApi.js"></script>
+    <script type="module" src="assets/js/modules/scripts-filmes-series.js"></script>
+    <script src="assets/js/expandir-sinopse.js"></script>
     <script src="assets/js/tema-escuro.js"></script>
 </body>
 </html>
